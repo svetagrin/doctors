@@ -94,4 +94,16 @@ public class DoctorLicense implements java.io.Serializable {
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
+
+    @Override
+    public String toString() {
+        return "DoctorLicense{" +
+                "id=" + id +
+                ", issuedBy='" + issuedBy + '\'' +
+                ", category='" + category + '\'' +
+                ", orderNo='" + orderNo + '\'' +
+                ", dateIssued='" + dateIssued + '\'' +
+                ", dateExpiry='" + dateExpiry + '\'' +
+                '}';
+    }
 }

@@ -108,4 +108,17 @@ public class DoctorCertificate implements java.io.Serializable {
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
+
+    @Override
+    public String toString() {
+        return "DoctorCertificate{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", number='" + number + '\'' +
+                ", degree='" + degree + '\'' +
+                ", issuedBy='" + issuedBy + '\'' +
+                ", dateStarted=" + dateStarted +
+                ", dateFinished=" + dateFinished +
+                '}';
+    }
 }

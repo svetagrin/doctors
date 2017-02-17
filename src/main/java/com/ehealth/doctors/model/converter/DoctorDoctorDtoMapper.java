@@ -31,4 +31,9 @@ public class DoctorDoctorDtoMapper extends CustomMapper<Doctor, DoctorDTO> {
 
         super.mapAtoB(doctor, doctorDTO, context);
     }
+
+//    @Override
+//    public void mapBtoA(DoctorDTO doctorDTO, Doctor doctor, MappingContext context) {
+//        super.mapBtoA(doctorDTO, doctor, context);
+//    }
 }

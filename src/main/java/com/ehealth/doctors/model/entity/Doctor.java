@@ -150,4 +150,20 @@ public class Doctor implements java.io.Serializable {
         clinics.forEach(l -> l.setDoctor(this));
         this.clinics = clinics;
     }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id=" + id +
+                ", mpiId=" + mpiId +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", fname='" + fname + '\'' +
+                ", city='" + city + '\'' +
+                ", formerSurname='" + formerSurname + '\'' +
+                ", dateUpdated=" + dateUpdated +
+                ", certificates=" + certificates +
+                ", licenses=" + licenses +
+                '}';
+    }
 }

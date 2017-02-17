@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/doctor")
+@RequestMapping(value = "/doctor",  produces = MediaType.APPLICATION_JSON_VALUE)
+@ResponseBody
 public class DoctorController {
 
     private final DoctorService doctorService;
@@ -26,19 +27,26 @@ public class DoctorController {
         this.doctorService = doctorService;
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public DoctorDTO getBy(@PathVariable UUID id) {
+    @GetMapping(value = "/{id}")
+    public DoctorDTO getById(@PathVariable UUID id) {
         Doctor doctor = doctorService.getBy(id);
 
         return mapper.map(doctor, DoctorDTO.class);
     }
 
-    @GetMapping(value = {"", "/"}, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
+    @GetMapping(value = {"", "/"})
     public Iterable<DoctorDTO> getAll() {
         Iterable<Doctor> doctors = doctorService.list();
         return mapper.mapAsList(doctors, DoctorDTO.class);
+    }
+
+    @PostMapping(value = {"", "/"})
+    public DoctorDTO post(@RequestBody DoctorDTO doctorDto) {
+        final Doctor doctor = mapper.map(doctorDto, Doctor.class);
+
+        doctorService.save(doctor);
+
+        return mapper.map(doctor, DoctorDTO.class);
     }
 
     @GetMapping(value = {"generate", "generate/"}, produces = MediaType.APPLICATION_JSON_VALUE)

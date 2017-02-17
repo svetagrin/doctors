@@ -33,6 +33,10 @@ public class DoctorService {
         return iDoctorDAO.findAll();
     }
 
+    public void save(Doctor doc) {
+        iDoctorDAO.save(doc);
+    }
+
     public Doctor testGenerate() {
         Clinic clinic = new Clinic();
         clinic.setName("hospital");
