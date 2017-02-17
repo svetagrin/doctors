@@ -1,7 +1,6 @@
 package com.ehealth.doctors.dao;
 
-import com.ehealth.doctors.entity.Clinic;
-import com.ehealth.doctors.entity.Doctor;
+import com.ehealth.doctors.model.entity.Clinic;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

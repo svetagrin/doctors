@@ -1,6 +1,7 @@
-package com.ehealth.doctors.entity;
+package com.ehealth.doctors.model.entity;
 
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 /**
@@ -8,9 +9,9 @@ import javax.persistence.ManyToOne;
  */
 @Embeddable
 public class ClinicDoctorBindingId implements java.io.Serializable {
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Clinic clinic;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Doctor doctor;
 
     public Clinic getClinic() {

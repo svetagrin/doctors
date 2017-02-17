@@ -1,14 +1,14 @@
 package com.ehealth.doctors.controller;
 
-import com.ehealth.doctors.entity.Doctor;
+import com.ehealth.doctors.model.converter.OrikaBeanMapper;
+import com.ehealth.doctors.model.dto.DoctorDTO;
+import com.ehealth.doctors.model.entity.Doctor;
 import com.ehealth.doctors.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -16,19 +16,29 @@ import java.util.UUID;
 @RequestMapping("/doctor")
 public class DoctorController {
 
+    private final DoctorService doctorService;
+
+    private final OrikaBeanMapper mapper;
+
     @Autowired
-    private DoctorService doctorService;
+    public DoctorController(OrikaBeanMapper mapper, DoctorService doctorService) {
+        this.mapper = mapper;
+        this.doctorService = doctorService;
+    }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Doctor> getBy(UUID id) {
+    @ResponseBody
+    public DoctorDTO getBy(@PathVariable UUID id) {
         Doctor doctor = doctorService.getBy(id);
-        return new ResponseEntity<>(doctor, HttpStatus.OK);
+
+        return mapper.map(doctor, DoctorDTO.class);
     }
 
     @GetMapping(value = {"", "/"}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Iterable<Doctor>> getAll() {
+    @ResponseBody
+    public Iterable<DoctorDTO> getAll() {
         Iterable<Doctor> doctors = doctorService.list();
-        return new ResponseEntity<>(doctors, HttpStatus.OK);
+        return mapper.mapAsList(doctors, DoctorDTO.class);
     }
 
     @GetMapping(value = {"generate", "generate/"}, produces = MediaType.APPLICATION_JSON_VALUE)

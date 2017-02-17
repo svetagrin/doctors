@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by vilyam on 17.02.17.
  */
 @Service
-@Transactional
 public class ClinicService {
     @Autowired
     private IClinicDAO iClinicDAO;

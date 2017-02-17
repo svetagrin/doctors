@@ -1,4 +1,4 @@
-package com.ehealth.doctors.entity;
+package com.ehealth.doctors.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;

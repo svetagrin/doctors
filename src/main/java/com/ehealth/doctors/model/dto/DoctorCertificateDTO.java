@@ -1,49 +1,16 @@
-package com.ehealth.doctors.entity;
+package com.ehealth.doctors.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
-/**
- * Created by vilyam on 17.02.17.
- */
-@Entity
-@Table(name = "doctor_certificate")
-public class DoctorCertificate implements java.io.Serializable {
-
-    @Id
-    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
-    @GeneratedValue(generator = "system-uuid")
-    @Column(name = "id", columnDefinition = "BINARY(16)", unique = true)
+public class DoctorCertificateDTO implements java.io.Serializable {
     private UUID id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "number")
     private String number;
-
-    @Column(name = "degree")
     private String degree;
-
-    @Column(name = "issued_by")
     private String issuedBy;
-
-    @Column(name = "date_started")
-    @Temporal(TemporalType.DATE)
     private Date dateStarted;
-
-    @Column(name = "date_finished")
-    @Temporal(TemporalType.DATE)
     private Date dateFinished;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="doctor_id", nullable = false)
-    private Doctor doctor;
 
     public UUID getId() {
         return id;
@@ -99,13 +66,5 @@ public class DoctorCertificate implements java.io.Serializable {
 
     public void setDateFinished(Date dateFinished) {
         this.dateFinished = dateFinished;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
     }
 }

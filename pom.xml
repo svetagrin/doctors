@@ -81,13 +81,6 @@
             <version>${jackson.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.javaconfig/spring-javaconfig -->
-        <dependency>
-            <groupId>org.springframework.javaconfig</groupId>
-            <artifactId>spring-javaconfig</artifactId>
-            <version>1.0.0.m3</version>
-        </dependency>
-
         <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>persistence-api</artifactId>
@@ -102,6 +95,12 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>1.5.0</version>
         </dependency>
 
         <dependency>

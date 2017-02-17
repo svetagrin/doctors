@@ -1,13 +1,10 @@
-package com.ehealth.doctors.entity;
+package com.ehealth.doctors.model.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.*;
 
-/**
- * Created by vilyam on 17.02.17.
- */
 @Entity
 @Table(name = "doctor")
 public class Doctor implements java.io.Serializable {

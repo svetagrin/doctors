@@ -2,10 +2,10 @@ package com.ehealth.doctors.service;
 
 import com.ehealth.doctors.dao.IClinicDAO;
 import com.ehealth.doctors.dao.IDoctorDAO;
-import com.ehealth.doctors.entity.Clinic;
-import com.ehealth.doctors.entity.ClinicDoctorBinding;
-import com.ehealth.doctors.entity.Doctor;
-import com.ehealth.doctors.entity.DoctorCertificate;
+import com.ehealth.doctors.model.entity.Clinic;
+import com.ehealth.doctors.model.entity.ClinicDoctorBinding;
+import com.ehealth.doctors.model.entity.Doctor;
+import com.ehealth.doctors.model.entity.DoctorCertificate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +17,6 @@ import java.util.UUID;
  * Created by vilyam on 17.02.17.
  */
 @Service
-@Transactional
 public class DoctorService {
 
     @Autowired

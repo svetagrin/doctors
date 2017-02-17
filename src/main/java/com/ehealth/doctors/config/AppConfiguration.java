@@ -40,7 +40,7 @@ public class AppConfiguration {
             throws ClassNotFoundException, PropertyVetoException {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource());
-        emf.setPackagesToScan("com.ehealth.doctors.entity");
+        emf.setPackagesToScan("com.ehealth.doctors.model");
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         emf.setJpaVendorAdapter(vendorAdapter);
         emf.setJpaProperties(additionalProperties());
@@ -67,6 +67,7 @@ public class AppConfiguration {
 
     Properties additionalProperties() {
         Properties properties = new Properties();
+        properties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("show_sql", "true");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");

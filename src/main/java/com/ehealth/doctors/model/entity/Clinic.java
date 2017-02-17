@@ -1,4 +1,4 @@
-package com.ehealth.doctors.entity;
+package com.ehealth.doctors.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
@@ -39,7 +39,7 @@ public class Clinic implements java.io.Serializable {
     private Date dateUpdated;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.clinic", cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.clinic", cascade=CascadeType.ALL)
     private Set<ClinicDoctorBinding> doctors  = new HashSet<>();
 
     public UUID getId() {
