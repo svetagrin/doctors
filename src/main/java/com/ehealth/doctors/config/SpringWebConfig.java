@@ -28,7 +28,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(new MappingJackson2HttpMessageConverter(jacksonObjectMapper()));
+        converters.add(new MappingJackson2HttpMessageConverter(objectMapper()));
     }
 
     @Override
@@ -37,7 +37,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public ObjectMapper jacksonObjectMapper() {
+    public ObjectMapper objectMapper() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true);
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
@@ -45,7 +45,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         mapper.configure(MapperFeature.DEFAULT_VIEW_INCLUSION, true);
         mapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
-        mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+        //mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
         return mapper;
     }
 }
