@@ -4,6 +4,7 @@ import com.ehealth.doctors.model.converter.OrikaBeanMapper;
 import com.ehealth.doctors.model.dto.DoctorDTO;
 import com.ehealth.doctors.model.entity.Doctor;
 import com.ehealth.doctors.service.DoctorService;
+import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class DoctorController {
 
     private final DoctorService doctorService;
 
-    private final OrikaBeanMapper mapper;
+    private final MapperFacade mapper;
 
     @Autowired
     public DoctorController(OrikaBeanMapper mapper, DoctorService doctorService) {
@@ -26,20 +27,20 @@ public class DoctorController {
     }
 
     @GetMapping(value = "/{id}")
-    public DoctorDTO getById(@PathVariable UUID id) {
+    public DoctorDTO get(@PathVariable UUID id) {
         Doctor doctor = doctorService.getBy(id);
 
         return mapper.map(doctor, DoctorDTO.class);
     }
 
-    @GetMapping(value = {"", "/"})
-    public Iterable<DoctorDTO> getAll() {
+    @GetMapping(value = {""})
+    public Iterable<DoctorDTO> list() {
         Iterable<Doctor> doctors = doctorService.list();
 
         return mapper.mapAsList(doctors, DoctorDTO.class);
     }
 
-    @PostMapping(value = {"", "/"})
+    @PostMapping(value = {""})
     public DoctorDTO create(@RequestBody DoctorDTO doctorDto) throws Exception {
         if (doctorDto.getId() != null) throw new Exception();
 
@@ -50,7 +51,7 @@ public class DoctorController {
         return mapper.map(doctor, DoctorDTO.class);
     }
 
-    @PutMapping(value = {"", "/"})
+    @PutMapping(value = {""})
     public DoctorDTO update(@RequestBody DoctorDTO doctorDto) {
         final Doctor doctor = mapper.map(doctorDto, Doctor.class);
 

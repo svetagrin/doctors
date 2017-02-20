@@ -2,7 +2,6 @@ package com.ehealth.doctors.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,10 +9,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.servlet.http.HttpServletRequest;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
-/**
- * Created by vilyam on 18.02.17.
- */
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     private final int traceInclusion = 1;
@@ -25,7 +22,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         final HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Content-Type", "application/json");
 
-        return new ResponseEntity<>(errorObject, httpHeaders, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorObject, httpHeaders, BAD_REQUEST);
     }
 
     class ErrorObject {
