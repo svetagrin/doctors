@@ -1,6 +1,5 @@
 package com.ehealth.doctors.controller;
 
-import com.ehealth.doctors.model.converter.OrikaBeanMapper;
 import com.ehealth.doctors.model.dto.DoctorContactCardDTO;
 import com.ehealth.doctors.model.dto.DoctorDTO;
 import com.ehealth.doctors.model.entity.Doctor;
@@ -24,7 +23,7 @@ public class DoctorController {
     private final MapperFacade mapper;
 
     @Autowired
-    public DoctorController(OrikaBeanMapper mapper, DoctorService doctorService) {
+    public DoctorController(MapperFacade mapper, DoctorService doctorService) {
         this.mapper = mapper;
         this.doctorService = doctorService;
     }
