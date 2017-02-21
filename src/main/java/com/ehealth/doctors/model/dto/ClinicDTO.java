@@ -13,7 +13,7 @@ public class ClinicDTO implements java.io.Serializable {
     private String website;
     private Date dateAdded;
     private Date dateUpdated;
-    private Set<DoctorDTO> doctors  = new HashSet<>();
+    //private Set<DoctorDTO> doctors  = new HashSet<>();
 
     public UUID getId() {
         return id;
@@ -63,11 +63,11 @@ public class ClinicDTO implements java.io.Serializable {
         this.dateUpdated = dateUpdated;
     }
 
-    public Set<DoctorDTO> getDoctors() {
-        return doctors;
-    }
-
-    public void setDoctors(Set<DoctorDTO> doctors) {
-        this.doctors = doctors;
-    }
+//    public Set<DoctorDTO> getDoctors() {
+//        return doctors;
+//    }
+//
+//    public void setDoctors(Set<DoctorDTO> doctors) {
+//        this.doctors = doctors;
+//    }
 }

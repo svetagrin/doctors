@@ -1,14 +1,19 @@
 package com.ehealth.doctors.controller;
 
 import com.ehealth.doctors.model.dto.ClinicDTO;
+import com.ehealth.doctors.model.dto.DoctorDTO;
 import com.ehealth.doctors.model.entity.Clinic;
+import com.ehealth.doctors.model.entity.ClinicDoctorBinding;
+import com.ehealth.doctors.model.entity.Doctor;
 import com.ehealth.doctors.service.ClinicService;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/clinic")
@@ -56,5 +61,14 @@ public class ClinicController {
         clinicService.save(clinic);
 
         return mapper.map(clinic, ClinicDTO.class);
+    }
+
+    @GetMapping(value = "/{id}/doctors")
+    public List<DoctorDTO> listDoctors(@PathVariable UUID id) {
+        Clinic clinic = clinicService.getBy(id);
+
+        final List<Doctor> collect = clinic.getDoctors().stream().map(ClinicDoctorBinding::getDoctor).collect(Collectors.toList());
+
+        return mapper.mapAsList(collect, DoctorDTO.class);
     }
 }
