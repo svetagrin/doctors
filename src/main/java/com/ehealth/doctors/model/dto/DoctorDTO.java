@@ -34,6 +34,7 @@ public class DoctorDTO implements java.io.Serializable {
     private Set<DoctorCertificateDTO> certificates = new HashSet<>();
     private Set<DoctorLicenseDTO> licenses = new HashSet<>();
     private Set<DoctorClinicDTO> clinics = new HashSet<>();
+    private Set<DoctorContactCardDTO> contacts = new HashSet<>();
 
     public UUID getId() {
         return id;
@@ -137,5 +138,13 @@ public class DoctorDTO implements java.io.Serializable {
 
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public Set<DoctorContactCardDTO> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(Set<DoctorContactCardDTO> contacts) {
+        this.contacts = contacts;
     }
 }

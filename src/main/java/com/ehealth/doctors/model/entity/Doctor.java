@@ -50,6 +50,9 @@ public class Doctor implements java.io.Serializable {
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<DoctorLicense> licenses = new HashSet<>();
 
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<DoctorContactCard> contacts = new HashSet<>();
+
     @OneToMany(mappedBy = "pk.doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<ClinicDoctorBinding> clinics = new HashSet<>();
 
@@ -137,6 +140,11 @@ public class Doctor implements java.io.Serializable {
         getLicenses().add(license);
     }
 
+    public void addContact(DoctorContactCard contact) {
+        contact.setDoctor(this);
+        getContacts().add(contact);
+    }
+
     public void addClinicDoctorBinding(ClinicDoctorBinding b) {
         b.setDoctor(this);
         getClinics().add(b);
@@ -173,6 +181,14 @@ public class Doctor implements java.io.Serializable {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public Set<DoctorContactCard> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(Set<DoctorContactCard> contacts) {
+        this.contacts = contacts;
     }
 
     @Override

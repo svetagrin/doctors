@@ -1,6 +1,5 @@
 package com.ehealth.doctors.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -40,7 +39,6 @@ public class DoctorCertificate implements java.io.Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateFinished;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="doctor_id", nullable = false)
     private Doctor doctor;
