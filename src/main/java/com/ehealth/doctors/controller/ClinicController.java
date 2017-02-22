@@ -6,8 +6,12 @@ import com.ehealth.doctors.model.entity.Clinic;
 import com.ehealth.doctors.model.entity.ClinicDoctorBinding;
 import com.ehealth.doctors.model.entity.Doctor;
 import com.ehealth.doctors.service.ClinicService;
+
 import ma.glasnost.orika.MapperFacade;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -71,4 +75,16 @@ public class ClinicController {
 
         return mapper.mapAsList(collect, DoctorDTO.class);
     }
+    
+    private String getPrincipal(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+ 
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
+    }        
 }
