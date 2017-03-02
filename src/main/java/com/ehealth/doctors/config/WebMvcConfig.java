@@ -3,15 +3,19 @@ package com.ehealth.doctors.config;
 import com.ehealth.doctors.converter.StringToUUIDConverter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.*;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -20,8 +24,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.List;
 
+import javax.servlet.Filter;
+
 @Configuration
 @EnableWebMvc
+@Import({ SecurityConfigurationAdapter.class })
 @EnableSwagger2
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
@@ -70,4 +77,5 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
                 .paths(PathSelectors.any())
                 .build();
     }
+    
 }
